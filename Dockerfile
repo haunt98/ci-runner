@@ -34,7 +34,8 @@ ENV GO_VERSION 1.14.4
 ENV GO_OS linux
 ENV GO_ARCH amd64
 RUN wget https://dl.google.com/go/go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz \
-    && tar -C /usr/local -xzf go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz
+    && tar -C /usr/local -xzf go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz \
+    && rm -rf go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz
 ENV PATH "/usr/local/go/bin:$PATH"
 ENV GOPATH /go
 ENV PATH "$GOPATH/bin:$PATH"
