@@ -1,6 +1,10 @@
 FROM ubuntu:18.04
 
-# Prepare
+# Configure timezone
+ENV TZ=Asia/Ho_Chi_Minh
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
+# Prepare packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     git \
@@ -39,10 +43,6 @@ RUN wget https://dl.google.com/go/go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz \
 ENV PATH "/usr/local/go/bin:$PATH"
 ENV GOPATH /go
 ENV PATH "$GOPATH/bin:$PATH"
-
-# Configure timezone
-ENV TZ=Asia/Ho_Chi_Minh
-RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Install librdfkafka
 # https://docs.confluent.io/current/installation/installing_cp/deb-ubuntu.html#
