@@ -42,6 +42,12 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     librdkafka-dev \
     && rm -rf /var/lib/apt/lists/*
 
+
+# Install git
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    git \
+    && rm -rf /var/lib/apt/lists/*
+
 # Install enumer
 RUN go get -u github.com/alvaroloes/enumer/...
 
