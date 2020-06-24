@@ -57,3 +57,9 @@ RUN go get -u github.com/alvaroloes/enumer/...
 
 # Install golang-ci lint
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.27.0
+
+# Install MinIO
+RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc \
+    && chmod +x mc \
+    && mv mc $GOPATH/bin
+RUN mc --help
