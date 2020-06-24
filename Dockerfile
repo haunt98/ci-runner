@@ -29,7 +29,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     wget \
     && rm -rf /var/lib/apt/lists/*
 RUN wget https://dl.google.com/go/go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz \
-    tar -C /usr/local -xzf go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz
+    && tar -C /usr/local -xzf go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz
 ENV PATH "/usr/local/go/bin:$PATH"
 ENV GOPATH /go
 ENV PATH "$GOPATH/bin:$PATH"
