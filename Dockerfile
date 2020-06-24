@@ -39,6 +39,10 @@ ENV PATH "/usr/local/go/bin:$PATH"
 ENV GOPATH /go
 ENV PATH "$GOPATH/bin:$PATH"
 
+# Configure timezone
+ENV TZ=Asia/Ho_Chi_Minh
+RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
+
 # Install librdfkafka
 # https://docs.confluent.io/current/installation/installing_cp/deb-ubuntu.html#
 RUN wget -qO - https://packages.confluent.io/deb/5.5/archive.key | apt-key add -
