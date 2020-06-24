@@ -8,7 +8,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     curl \
     gnupg-agent \
     software-properties-common \
-    rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 RUN add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
@@ -18,7 +18,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     docker-ce \
     docker-ce-cli \
     containerd.io \
-    rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 # Install Go
 # https://golang.org/doc/install
@@ -27,7 +27,7 @@ ENV GO_OS linux
 ENV GO_ARCH amd64
 RUN apt-get update && apt-get install --no-install-recommends -y \
     wget \
-    rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 RUN wget https://dl.google.com/go/go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz \
     tar -C /usr/local -xzf go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz
 ENV PATH "/usr/local/go/bin:$PATH"
@@ -40,7 +40,7 @@ RUN wget -qO - https://packages.confluent.io/deb/5.5/archive.key | apt-key add -
 RUN add-apt-repository "deb [arch=amd64] https://packages.confluent.io/deb/5.5 stable main"
 RUN apt-get update && apt-get install --no-install-recommends -y \
     librdkafka-dev \
-    rm -rf /var/lib/apt/lists/*
+    && rm -rf /var/lib/apt/lists/*
 
 # Install enumer
 RUN go get -u github.com/alvaroloes/enumer/...
