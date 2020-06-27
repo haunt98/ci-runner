@@ -7,6 +7,7 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 # Prepare packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
+    ca-certificates \
     git \
     pkg-config \
     wget \
@@ -37,7 +38,7 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 ENV GO_VERSION 1.14.4
 ENV GO_OS linux
 ENV GO_ARCH amd64
-RUN wget --no-check-certificate https://dl.google.com/go/go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz \
+RUN wget https://dl.google.com/go/go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz \
     && tar -C /usr/local -xzf go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz \
     && rm -rf go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz
 ENV PATH "/usr/local/go/bin:$PATH"
@@ -59,6 +60,6 @@ RUN go get -u github.com/alvaroloes/enumer/...
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.27.0
 
 # Install MinIO
-RUN wget --no-check-certificate https://dl.min.io/client/mc/release/linux-amd64/mc \
+RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc \
     && chmod +x mc \
     && mv mc $GOPATH/bin
