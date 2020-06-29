@@ -63,3 +63,8 @@ RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/i
 RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc \
     && chmod +x mc \
     && mv mc $GOPATH/bin
+
+# Install lz4
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    lz4 \
+    && rm -rf /var/lib/apt/lists/*
