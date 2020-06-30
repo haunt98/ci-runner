@@ -64,7 +64,7 @@ RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc \
     && chmod +x mc \
     && mv mc $GOPATH/bin
 
-# Install lz4
+# Install zstd
 RUN apt-get update && apt-get install --no-install-recommends -y \
-    lz4 \
+    zstd \
     && rm -rf /var/lib/apt/lists/*
