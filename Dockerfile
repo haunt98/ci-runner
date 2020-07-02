@@ -10,7 +10,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     ca-certificates \
     git \
     pkg-config \
+    unzip \
     wget \
+    zip \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Docker
@@ -63,8 +65,3 @@ RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/i
 RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc \
     && chmod +x mc \
     && mv mc $GOPATH/bin
-
-# Install zstd
-RUN apt-get update && apt-get install --no-install-recommends -y \
-    zstd \
-    && rm -rf /var/lib/apt/lists/*
