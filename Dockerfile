@@ -8,9 +8,12 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     ca-certificates \
+    curl \
     git \
     pkg-config \
+    unzip \
     wget \
+    zip \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Docker
@@ -63,3 +66,8 @@ RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/i
 RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc \
     && chmod +x mc \
     && mv mc $GOPATH/bin
+
+# Install Rclone
+RUN apt-get update && apt-get install --no-install-recommends -y \
+    rclone \
+    && rm -rf /var/lib/apt/lists/*
