@@ -68,6 +68,9 @@ RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc \
     && mv mc $GOPATH/bin
 
 # Install Rclone
-RUN apt-get update && apt-get install --no-install-recommends -y \
-    rclone \
-    && rm -rf /var/lib/apt/lists/*
+ENV RCLONE_VERSION v1.52.2
+RUN curl -O https://github.com/rclone/rclone/releases/download/$RCLONE_VERSION/rclone-$RCLONE_VERSION-linux-amd64.zip \
+    && unzip rclone-$RCLONE_VERSION-linux-amd64.zip \
+    && rm rclone-$RCLONE_VERSION-linux-amd64.zip \
+    && mv rclone-$RCLONE_VERSION-linux-amd64/rclone $GOPATH/bin \
+    && rm -rf rclone-$RCLONE_VERSION-linux-amd64.zip
