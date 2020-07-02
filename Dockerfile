@@ -9,10 +9,9 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     build-essential \
     ca-certificates \
     git \
+    p7zip \
     pkg-config \
-    unzip \
     wget \
-    zip \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Docker
