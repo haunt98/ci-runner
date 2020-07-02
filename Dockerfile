@@ -38,12 +38,12 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 # Install Go
 # https://golang.org/doc/install
-ENV GO_VERSION 1.14.4
-ENV GO_OS linux
-ENV GO_ARCH amd64
-RUN wget https://dl.google.com/go/go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz \
-    && tar -C /usr/local -xzf go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz \
-    && rm -rf go$GO_VERSION.$GO_OS-$GO_ARCH.tar.gz
+ENV _GO_VERSION 1.14.4
+ENV _GO_OS linux
+ENV _GO_ARCH amd64
+RUN wget https://dl.google.com/go/go$_GO_VERSION.$_GO_OS-$_GO_ARCH.tar.gz \
+    && tar -C /usr/local -xzf go$_GO_VERSION.$_GO_OS-$_GO_ARCH.tar.gz \
+    && rm -rf go$_GO_VERSION.$GO_OS-$GO_ARCH.tar.gz
 ENV PATH "/usr/local/go/bin:$PATH"
 ENV GOPATH /go
 ENV PATH "$GOPATH/bin:$PATH"
@@ -68,9 +68,9 @@ RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc \
     && mv mc $GOPATH/bin
 
 # Install Rclone
-ENV RCLONE_VERSION v1.52.2
-RUN curl -O https://downloads.rclone.org/$RCLONE_VERSION/rclone-$RCLONE_VERSION-linux-amd64.zip \
-    && unzip rclone-$RCLONE_VERSION-linux-amd64.zip \
-    && rm rclone-$RCLONE_VERSION-linux-amd64.zip \
-    && mv rclone-$RCLONE_VERSION-linux-amd64/rclone $GOPATH/bin \
-    && rm -rf rclone-$RCLONE_VERSION-linux-amd64
+ENV _RCLONE_VERSION v1.52.2
+RUN curl -O https://downloads.rclone.org/$_RCLONE_VERSION/rclone-$_RCLONE_VERSION-linux-amd64.zip \
+    && unzip rclone-$_RCLONE_VERSION-linux-amd64.zip \
+    && rm rclone-$_RCLONE_VERSION-linux-amd64.zip \
+    && mv rclone-$_RCLONE_VERSION-linux-amd64/rclone $GOPATH/bin \
+    && rm -rf rclone-$_RCLONE_VERSION-linux-amd64
