@@ -62,6 +62,7 @@ RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/i
 # Install MinIO
 RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc \
     && chmod +x mc \
+    && mv mc $GOPATH/bin
 
 # Install Rclone
 ENV _RCLONE_VERSION v1.52.2
