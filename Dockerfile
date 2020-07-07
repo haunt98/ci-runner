@@ -22,13 +22,6 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
 
 # Install Docker
 # https://docs.docker.com/engine/install/ubuntu/
-RUN apt-get update && apt-get install --no-install-recommends -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common \
-    && rm -rf /var/lib/apt/lists/*
 RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
 RUN add-apt-repository \
     "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
