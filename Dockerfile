@@ -10,30 +10,11 @@ RUN apt-get update && apt-get install --no-install-recommends -y \
     ca-certificates \
     curl \
     git \
+    gnupg-agent \
     pkg-config \
     unzip \
     wget \
     zip \
-    && rm -rf /var/lib/apt/lists/*
-
-# Install Docker
-# https://docs.docker.com/engine/install/ubuntu/
-RUN apt-get update && apt-get install --no-install-recommends -y \
-    apt-transport-https \
-    ca-certificates \
-    curl \
-    gnupg-agent \
-    software-properties-common \
-    && rm -rf /var/lib/apt/lists/*
-RUN curl -fsSL https://download.docker.com/linux/ubuntu/gpg | apt-key add -
-RUN add-apt-repository \
-    "deb [arch=amd64] https://download.docker.com/linux/ubuntu \
-    $(lsb_release -cs) \
-    stable"
-RUN apt-get update && apt-get install --no-install-recommends -y \
-    docker-ce \
-    docker-ce-cli \
-    containerd.io \
     && rm -rf /var/lib/apt/lists/*
 
 # Install Go
@@ -61,11 +42,6 @@ RUN go get -u github.com/alvaroloes/enumer/...
 
 # Install golang-ci lint
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.27.0
-
-# Install MinIO
-RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc \
-    && chmod +x mc \
-    && mv mc $GOPATH/bin
 
 # Install Rclone
 ENV _RCLONE_VERSION v1.52.2
