@@ -59,6 +59,10 @@ RUN go get -u github.com/alvaroloes/enumer/...
 # Install golang-ci lint
 RUN curl -sSfL https://raw.githubusercontent.com/golangci/golangci-lint/master/install.sh | sh -s -- -b $(go env GOPATH)/bin v1.27.0
 
+# Install MinIO
+RUN wget https://dl.min.io/client/mc/release/linux-amd64/mc \
+    && chmod +x mc \
+
 # Install Rclone
 ENV _RCLONE_VERSION v1.52.2
 RUN curl -O https://downloads.rclone.org/$_RCLONE_VERSION/rclone-$_RCLONE_VERSION-linux-amd64.zip \
