@@ -6,12 +6,15 @@ RUN ln -snf /usr/share/zoneinfo/$TZ /etc/localtime && echo $TZ > /etc/timezone
 
 # Prepare packages
 RUN apt-get update && apt-get install --no-install-recommends -y \
+    apt-transport-https \
     build-essential \
     ca-certificates \
     curl \
     git \
     gnupg-agent \
+    gnupg2 \
     pkg-config \
+    software-properties-common \
     unzip \
     wget \
     zip \
