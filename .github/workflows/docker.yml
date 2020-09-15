@@ -17,4 +17,4 @@ jobs:
           password: ${{ secrets.DOCKER_PASSWORD }}
           repository: cyndie7216/ci-runner
           tags: latest
-          cache_froms: cyndie7216/ci-runner:latest
+          cache_froms: cyndie7216/ci-runner
